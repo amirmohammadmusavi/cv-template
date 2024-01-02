@@ -14,8 +14,14 @@ import jdatetime
 
 
 def HomeView(request):
+    detail = SiteDetailsModel.objects.first()
+    if request.LANGUAGE_CODE == 'fa' and not detail.fa:
+        return redirect(f"/en")
+    if request.LANGUAGE_CODE == 'de' and not detail.de:
+        return redirect(f"/en")
+    
     context = {
-        'base_info': SiteDetailsModel.objects.first(),
+        'base_info': detail,
         'menu': menuModel.objects.all(),
         'PersonalDesc': PersonalDesc.objects.first(),
         'social': Social.objects.all(),
