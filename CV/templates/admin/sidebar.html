@@ -1,0 +1,217 @@
+{% load i18n static admin_volt %}
+
+<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+    <a class="navbar-brand me-lg-5" href="/">
+        پنل مدیریت
+    </a>
+    <div class="d-flex align-items-center">
+        <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
+    <div class="sidebar-inner px-4 pt-3">
+        <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
+            <div class="d-flex align-items-center">
+                <div class="d-block">
+                    <h2 class="h5 mb-3">سلام, {{ request.user.first_name|default:request.user.username }}</h2>
+                    <a href="#" class="btn btn-secondary btn-sm d-inline-flex align-items-center">
+                        <span class="fa fa-sign-out"></span> خارج شدن
+                    </a>
+                </div>
+            </div>
+            <div class="collapse-close d-md-none">
+                <a href="#sidebarMenu" data-bs-toggle="collapse"
+                   data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true"
+                   aria-label="Toggle navigation">
+                    <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <ul class="nav flex-column pt-3 pt-md-0">
+            <!-- <li class="nav-item">
+                <a href="{% url 'admin:index' %}" class="nav-link d-flex align-items-center">
+                    <span class="sidebar-icon">
+                       <img src="{% static 'admin_volt/assets/img/brand/light.svg' %}" height="20" width="20" alt="Volt Logo">
+                    </span>
+                    <span class="mt-1 ms-1 sidebar-text">{% trans 'Administrator' %}</span>
+                </a>
+            </li> -->
+
+            <li class="nav-item {% if 'dashboard' in segment %} active {% endif %}">
+                <a href="{% url 'admin:index' %}" class="nav-link">
+                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 15.0002V9.45222C17 8.91789 16.9995 8.65057 16.9346 8.40193C16.877 8.18159 16.7825 7.97307 16.6546 7.78464C16.5102 7.57201 16.3096 7.39569 15.9074 7.04383L11.1074 2.84383C10.3608 2.19054 9.98751 1.86406 9.56738 1.73982C9.19719 1.63035 8.80261 1.63035 8.43242 1.73982C8.01261 1.86397 7.63985 2.19014 6.89436 2.84244L2.09277 7.04383C1.69064 7.39569 1.49004 7.57201 1.3457 7.78464C1.21779 7.97307 1.12255 8.18159 1.06497 8.40193C1 8.65057 1 8.91788 1 9.45222V15.0002C1 15.932 1 16.3978 1.15224 16.7654C1.35523 17.2554 1.74432 17.6452 2.23438 17.8482C2.60192 18.0005 3.06786 18.0005 3.99974 18.0005C4.93163 18.0005 5.39808 18.0005 5.76562 17.8482C6.25568 17.6452 6.64467 17.2555 6.84766 16.7654C6.9999 16.3979 7 15.932 7 15.0001V14.0001C7 12.8955 7.89543 12.0001 9 12.0001C10.1046 12.0001 11 12.8955 11 14.0001V15.0001C11 15.932 11 16.3979 11.1522 16.7654C11.3552 17.2555 11.7443 17.6452 12.2344 17.8482C12.6019 18.0005 13.0679 18.0005 13.9997 18.0005C14.9316 18.0005 15.3981 18.0005 15.7656 17.8482C16.2557 17.6452 16.6447 17.2554 16.8477 16.7654C16.9999 16.3978 17 15.932 17 15.0002Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                    <span class="sidebar-text mr-4">{% trans 'داشبورد' %}</span>
+                </a>
+            </li>
+
+            {% admin_get_menu as app_list %}
+            {% if app_list %}
+                {% for app in app_list %}
+                    {% if app.has_perms and not app.pinned %}
+                        <li class="nav-item">
+                          <span class="nav-link{% if app_label != app.label and app.url not in request.path|urlencode  %} collapsed{% endif %} d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-{{ app.app_label }}">
+                                <span>
+                                    {% if app.app_label == 'security' %}
+                                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 7L8 11L6 9M17 8.16505C17 14.7333 12.0319 17.6781 9.92578 18.6314L9.92313 18.6325C9.70162 18.7328 9.59058 18.7831 9.33887 18.8263C9.17946 18.8537 8.82154 18.8537 8.66214 18.8263C8.40942 18.7829 8.29723 18.7325 8.07395 18.6314C5.9678 17.6781 1 14.7333 1 8.16504V4.2002C1 3.08009 1 2.51962 1.21799 2.0918C1.40973 1.71547 1.71547 1.40973 2.0918 1.21799C2.51962 1 3.08009 1 4.2002 1H13.8002C14.9203 1 15.4796 1 15.9074 1.21799C16.2837 1.40973 16.5905 1.71547 16.7822 2.0918C17 2.5192 17 3.07899 17 4.19691V8.16505Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'auth' %}
+                                    <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 15.9999C19 14.2583 17.3304 12.7767 15 12.2275M13 16C13 13.7909 10.3137 12 7 12C3.68629 12 1 13.7909 1 16M13 9C15.2091 9 17 7.20914 17 5C17 2.79086 15.2091 1 13 1M7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5C11 7.20914 9.20914 9 7 9Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                        
+                                    {% endif %}
+                                    {% if app.app_label == 'accounts' %}
+                                    <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 15.9999C19 14.2583 17.3304 12.7767 15 12.2275M13 16C13 13.7909 10.3137 12 7 12C3.68629 12 1 13.7909 1 16M13 9C15.2091 9 17 7.20914 17 5C17 2.79086 15.2091 1 13 1M7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5C11 7.20914 9.20914 9 7 9Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                    
+                                    {% endif %}
+                                    {% if app.app_label == 'marketing' %}
+                                    <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 16C13 13.7909 10.3137 12 7 12C3.68629 12 1 13.7909 1 16M17 13V10M17 10V7M17 10H14M17 10H20M7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5C11 7.20914 9.20914 9 7 9Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'pagebuilder' %}
+                                    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 11L10 17L1 11M19 7L10 13L1 7L10 1L19 7Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'shop' %}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3 6H21" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        
+                                    {% endif %}
+                                    {% if app.app_label == 'restapi' %}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M22 7L13.03 12.7C12.7213 12.8934 12.3643 12.996 12 12.996C11.6357 12.996 11.2787 12.8934 10.97 12.7L2 7" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'base' %}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.73 21C13.5542 21.3031 13.3018 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'cart' %}
+                                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.95 20.95C7.50228 20.95 7.95 20.5023 7.95 19.95C7.95 19.3977 7.50228 18.95 6.95 18.95C6.39771 18.95 5.95 19.3977 5.95 19.95C5.95 20.5023 6.39771 20.95 6.95 20.95Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M17.95 20.95C18.5023 20.95 18.95 20.5023 18.95 19.95C18.95 19.3977 18.5023 18.95 17.95 18.95C17.3977 18.95 16.95 19.3977 16.95 19.95C16.95 20.5023 17.3977 20.95 17.95 20.95Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1 1H3L5.66 13.42C5.75758 13.8749 6.01067 14.2815 6.37571 14.5699C6.74075 14.8582 7.19491 15.0103 7.66 15H17.44C17.8952 14.9993 18.3365 14.8433 18.691 14.5578C19.0456 14.2724 19.2921 13.8745 19.39 13.43L21.04 6H4.07" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'blog' %}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.5 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7.5L14.5 2Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14 2V8H20" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 13H8" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 17H8" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 9H8" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    {% if app.app_label == 'payment' %}
+                                    <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 6H21M3 1H19C20.1046 1 21 1.89543 21 3V13C21 14.1046 20.1046 15 19 15H3C1.89543 15 1 14.1046 1 13V3C1 1.89543 1.89543 1 3 1Z" stroke="#687eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    {% endif %}
+                                    <a >
+                                      <span class="sidebar-text">{{ app.label|slice:18 }}{% if app.label|length > 18 %}..{% endif %}</span>
+                                    </a>
+                                </span>
+                                {% if app.models %}
+                                    <span class="link-arrow">
+                                        <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                            </span>
+
+                            {% if app.models %}
+                              <div class="multi-level collapse {% if 'tables-bootstrap-' in segment or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}" role="list" id="submenu-{{ app.app_label }}"  
+                                                                                                                                      aria-expanded="{% if app_label == app.label or app.url in request.path|urlencode %}true{% else %}false{% endif %}">
+                                    <ul class="flex-column nav">
+                                        {% for model in app.models %}
+                                            {% if model.url %}
+                                              <li class="nav-item{% if 'bootstrap-tables' in segment or model.url in request.path|urlencode %} active {% endif %}">
+                                                    <a class="nav-link" href="{{ model.url }}">
+                                                      <span class="sidebar-text">{{ model.label }}</span>
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li>{{ model.label }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+    <div class="hooner_card w-100 p-3 position-fixed d-flex justify-content-between align-items-baseline d-none" style="bottom:0;right: 0;max-width: 300px">
+        <h6 style="color: #424242;">پنل اختصاصی هونر</h6>
+        <div class="logo" style="max-width: 100px;">
+            <?xml version="1.0" encoding="UTF-8"?><svg style="width: 100%;right:0;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 500" xml:space="preserve">
+                <style type="text/css">
+                  .st1 {
+                    fill: #FFD501;
+                  }
+
+                  .st0 {
+                    fill: #fff;
+                  }
+                </style>
+                <g>
+                  <path class="st1" d="M574.9,145.63c-29.49,0-56.04,12.37-74.92,32.13c-18.88-19.76-45.43-32.13-74.92-32.13H284.65v1.26
+                                c0,28.55,19.87,52.41,46.52,58.66c-6.22,13.31-9.79,28.11-9.79,43.77c0,57.27,46.42,103.69,103.69,103.69
+                                c23.5,0,45.11-7.91,62.5-21.09l12.62,21.62l12.5-21.41c17.34,13.05,38.84,20.88,62.22,20.88c57.27,0,103.69-46.42,103.69-103.69
+                                c0-15.66-3.57-30.46-9.79-43.77c26.65-6.24,46.52-30.11,46.52-58.66v-1.26H574.9z M425.07,291.45c-23.27,0-42.13-18.86-42.13-42.13
+                                c0-23.27,18.86-42.13,42.13-42.13c23.27,0,42.13,18.86,42.13,42.13C467.19,272.58,448.33,291.45,425.07,291.45z M574.9,291.45
+                                c-23.27,0-42.13-18.86-42.13-42.13c0-23.27,18.86-42.13,42.13-42.13c23.27,0,42.13,18.86,42.13,42.13
+                                C617.03,272.58,598.17,291.45,574.9,291.45z"></path>
+                  <g>
+                    <path class="st1" d="M574.9,145.63c-28-0.1-55.64,11.85-74.87,32.18c-19.44-20.17-47.09-32.3-75.26-32.05
+                                  c-18.61-0.01-119.44,0.01-140.12,0c0,0,0.12-0.12,0.12-0.12c0.05,3.41,0.16,6.82,0.71,10.2c2.41,16.9,12.58,32.46,26.97,41.64
+                                  c5.73,3.7,12.1,6.4,18.75,7.96c0.08,0.02,0.12,0.1,0.08,0.17c-25.93,54.56,1.69,120.73,58.47,141.1
+                                  c32.93,12.1,70.09,5.99,97.92-14.85c0,0,12.62,21.62,12.62,21.62h-0.22l12.5-21.41c0.03-0.06,0.11-0.08,0.17-0.04
+                                  c9.15,6.87,19.42,12.26,30.31,15.8c32.7,10.87,70.48,3.85,97.07-18.07c36.58-29.12,48.84-81.97,28.56-124.15
+                                  c-0.03-0.07,0.01-0.16,0.09-0.17c6.64-1.55,13.01-4.26,18.75-7.96c5.74-3.69,10.84-8.36,15.02-13.75
+                                  c4.18-5.38,7.45-11.48,9.58-17.96c2.17-6.47,3.1-13.31,3.08-20.13C715.87,145.97,574.79,145.51,574.9,145.63L574.9,145.63z
+                                  M574.9,145.63c0.12,0.11,140.55-0.33,140.53,0c0.01,6.85-0.86,13.72-3.08,20.21c-2.15,6.5-5.42,12.63-9.62,18.03
+                                  c-8.14,10.59-21.19,19.27-33.82,21.62c20.31,42.37,8.08,95.17-28.63,124.45c-26.66,21.97-64.53,29.01-97.31,18.12
+                                  c-10.6-3.5-21.98-9.13-30.18-15.87c0,0-12.5,21.41-12.5,21.41c-0.04,0.08-0.17,0.08-0.22,0c0,0-12.62-21.62-12.62-21.62
+                                  c-26.42,21.09-65.62,26.94-97.79,14.95c-56.89-20.41-84.61-86.75-58.61-141.44c0,0,0.08,0.17,0.08,0.17
+                                  c-6.67-1.56-13.07-4.28-18.82-7.99c-14.45-9.22-24.66-24.85-27.08-41.81c-0.55-3.38-0.66-6.82-0.71-10.23
+                                  c0-0.07,0.06-0.13,0.13-0.13c21.37-0.06,121.2,0.04,140.12,0c27.98-0.22,56.34,11.94,75.16,32.2
+                                  C519.21,157.4,546.89,145.48,574.9,145.63L574.9,145.63z"></path>
+                    <path class="st1" d="M425.07,291.45c-37.71-0.19-56.27-45.16-29.88-72c16.18-16.43,43.57-16.43,59.75,0
+                                  C481.34,246.29,462.78,291.25,425.07,291.45L425.07,291.45z M425.07,291.45c16.67,0.13,32.58-10.62,38.8-26.05
+                                  c11.45-27.52-8.99-58.12-38.8-58.07c-29.81-0.04-50.26,30.55-38.8,58.07C392.49,280.82,408.4,291.58,425.07,291.45L425.07,291.45z
+                                  "></path>
+                    <path class="st1" d="M574.9,291.45c-37.71-0.19-56.27-45.16-29.88-72c16.18-16.43,43.57-16.43,59.75,0
+                                  C631.18,246.29,612.61,291.25,574.9,291.45L574.9,291.45z M574.9,291.45c16.67,0.13,32.58-10.62,38.8-26.05
+                                  c11.45-27.52-8.99-58.12-38.8-58.07c-29.81-0.04-50.26,30.55-38.8,58.07C542.33,280.82,558.24,291.58,574.9,291.45L574.9,291.45z"></path>
+                  </g>
+                </g>
+              </svg>
+        </div>
+    </div>
+</nav>

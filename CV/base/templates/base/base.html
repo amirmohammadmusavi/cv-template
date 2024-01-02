@@ -1,0 +1,129 @@
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="author" content="Seyed Amirmohammad Mousavi | 09014131719">
+    <meta name="copyright" content="{{base_info.meta_copyright}}" />
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="{{base_info.theme_color}}">
+    <meta name="description" content="{{base_info.description}}">
+    <meta property="og:image" content="{{base_info.og_image}}">
+    <meta name="og:title" property="og:title" content="{{base_info.og_title}}">
+    <meta property="og:description" content="{{base_info.og_description}}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{base_info.fav_icon}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{base_info.fav_icon2}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{base_info.fav_icon3}}">
+    <link rel="icon" href="{{base_info.fav_icon3}}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/main.style.css' %}">
+    {% if request.LANGUAGE_CODE == 'en' %}
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}" type="text/css">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'base/css/rtl-style.css' %}" type="text/css">
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'base/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/owl.carousel.min.css' %}" type="text/css">
+    
+    {% block Link %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+{% if base_info %}
+<body class="p-0">
+    <!-- <div id="preloder">
+        <div class="loader">
+            <img src="{% static 'base/img/progressbar_logo.svg' %}">
+        </div>
+    </div> -->
+<style>
+    :root {
+        --main_color: {% if base_info.main_color %}{{base_info.main_color}}{% else %}#687eff{% endif %};
+        --second_color: {% if base_info.second_color %}{{base_info.second_color}}{% else %}#98e4ff{% endif %};
+        --third_color: {% if base_info.third_color %}{{base_info.third_color}}{% else %}#292929{% endif %};
+        --header_inner_title: {% if base_info.header_inner_title %}{{base_info.header_inner_title}}{% else %}#292929{% endif %};
+        --font-size: 0.8rem;
+    }
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: 900;
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Black.eot' %}");
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Black.eot?#iefix' %}") format("embedded-opentype"),
+            url("{% static 'base/fonts/woff2/IRANSansWeb(FaNum)_Black.woff2' %}") format("woff2"),
+            url("{% static 'base/fonts/woff/IRANSansWeb(FaNum)_Black.woff' %}") format("woff"),
+            url("{% static 'base/fonts/ttf/IRANSansWeb(FaNum)_Black.ttf' %}") format("truetype");
+    }
+
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: bold;
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Bold.eot' %}");
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix' %}") format("embedded-opentype"),
+            url("{% static 'base/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2' %}") format("woff2"),
+            url("{% static 'base/fonts/woff/IRANSansWeb(FaNum)_Bold.woff' %}") format("woff"),
+            url("{% static 'base/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf' %}") format("truetype");
+    }
+
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: normal;
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Medium.eot' %}");
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix' %}") format("embedded-opentype"),
+            url("{% static 'base/fonts/woff2/IRANSansWeb(FaNum)_Medium.woff2' %}") format("woff2"),
+            url("{% static 'base/fonts/woff/IRANSansWeb(FaNum)_Medium.woff' %}") format("woff"),
+            url("{% static 'base/fonts/ttf/IRANSansWeb(FaNum)_Medium.ttf' %}") format("truetype");
+    }
+
+    @font-face {
+        font-family: Peyda;
+        font-style: normal;
+        font-weight: 100;
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Light.eot' %}");
+        src: url("{% static 'base/fonts/eot/IRANSansWeb(FaNum)_Light.eot?#iefix' %}") format("embedded-opentype"),
+            url("{% static 'base/fonts/woff2/IRANSansWeb(FaNum)_Light.woff2' %}") format("woff2"),
+            url("{% static 'base/fonts/woff/IRANSansWeb(FaNum)_Light.woff' %}") format("woff"),
+            url("{% static 'base/fonts/ttf/IRANSansWeb(FaNum)_Light.ttf' %}") format("truetype");
+    }
+</style>
+
+<div class="progressbar" id="progressbar">
+    <div class="progress bg-white p-4 rounded shadow d-flex align-items-center">
+        <h6 class="m-3">please wait</h6>
+        <div class="loader"></div>
+    </div>
+</div>
+<a href="#">
+    <div class="scroll_up">
+        <svg width="12" height="10" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.0105 0.0180464C4.8761 0.0177834 4.74584 0.0646499 4.64235 0.150511L1.19102 3.03017C1.07355 3.12793 0.999673 3.26841 0.985649 3.4207C0.971626 3.57299 1.0186 3.72462 1.11624 3.84224C1.21387 3.95985 1.35418 4.03381 1.50628 4.04786C1.65839 4.0619 1.80983 4.01487 1.9273 3.91711L5.0105 1.33693L8.09369 3.82496C8.15253 3.8728 8.22023 3.90852 8.29291 3.93008C8.36558 3.95164 8.44179 3.95861 8.51716 3.95058C8.59253 3.94255 8.66558 3.91969 8.73209 3.8833C8.79861 3.84692 8.85729 3.79773 8.90476 3.73857C8.95744 3.67935 8.99733 3.60988 9.02195 3.5345C9.04657 3.45913 9.05537 3.37948 9.04781 3.30054C9.04025 3.2216 9.01649 3.14507 8.97801 3.07576C8.93954 3.00644 8.88719 2.94582 8.82423 2.89771L5.37289 0.115955C5.26642 0.0436662 5.13883 0.0091938 5.0105 0.0180464Z" fill="#c8c8c8"/>
+          </svg>
+    </div>
+</a>
+{% block header %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block footer %}{% endblock %}
+{% else %}
+<div class="container">
+    <div class="row justify-content-center align-items-center w-100 h-100">
+        <div class="bg-white p-4 text-center rounded shadow-sm w-25">
+            not found any content
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="alert_parent" id="Alert"></div>
+<script src="{% static 'base/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'base/js/jquery.ajax.min.js' %}"></script>
+<script src="{% static 'base/js/main.js' %}"></script>
+<script src="{% static 'base/js/owl.carousel.min.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

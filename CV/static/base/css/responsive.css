@@ -1,0 +1,182 @@
+@media only screen and (min-width: 1920px) {}
+@media (max-width: 1821px) {}
+@media (max-width: 1560px) {}
+@media (max-width: 1400px) {
+    .owl-carousel .owl-nav {
+        width: 96%;
+        top: calc(50% - 15px);
+    }
+    .owl-carousel .owl-nav button:first-child::after {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
+        border: 1px solid #000;
+    }
+    .owl-carousel .owl-nav button:last-child::after {
+        background-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
+        border: 1px solid #000;
+    }
+    .owl-carousel .owl-nav button:last-child {
+        border-top: 1px solid #000 !important;
+        border-right: 1px solid #000 !important;
+    }
+    .owl-carousel .owl-nav button:first-child {
+        border-bottom: 1px solid #000 !important;
+        border-left: 1px solid #000 !important;
+    }
+    .owl-carousel .owl-nav {
+        width: 94%;
+        top: calc(50% - 15px);
+        left: 3%;
+    }
+}
+@media (max-width: 1200px) {
+    .mobile_menu {
+        display: unset;
+    }
+    .desctop_menu {
+        display: none !important;
+    }
+    header {
+        width: 100%;
+        top: 0;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        right: 0;
+    }
+}
+@media (max-width: 992px) {
+    section.about .about_person .personal_desc {
+        position: absolute;
+        max-width: 720px;
+        top: -70%;
+        right: unset;
+        margin: auto auto;
+    }
+    section.about .about_person .conditions {
+        left: 0;
+    }
+    section.about .about_person .personal_social {
+        right: 0;
+    }
+}
+@media (max-width: 768px) {
+    [edge]::after {
+        width: 26px;
+        height: 26px;
+        background-size: 100%;
+        top: -24px;
+    }
+    section.about .about_person .personal_social::after {
+        right: 0px;
+        transform: scaleX(-1);
+    }
+    section.about .about_person .conditions::after {
+        left: 0;
+    }
+    section.about .about_person .personal_social {
+        width: 100%;
+        max-width: unset;
+    }
+    section.about .about_person .conditions {
+        width: 100%;
+        max-width: unset;
+    }
+    section.about .about_person {
+        flex-direction: column;
+        align-items: center;
+    }
+    section.about .about_person .personal_desc {
+        position: unset;
+        margin-bottom: 6px;
+        width: 100%;
+    }
+    section.about .about_person .personal_social {
+        position: unset;
+        margin-bottom: 6px;
+    }
+    section.about .about_person .conditions {
+        position: unset;
+        margin-bottom: 6px;
+    }
+    section.about {
+        height: auto;
+        padding-top: 120px;
+    }
+    section.about .about_person .personal_desc h1 {
+        font-size: 16px;
+    }
+    section.about .about_person .personal_desc h2 {
+        font-size: 15px;
+    }
+    section.about .about_person .personal_desc p {
+        font-size: 13px;
+    }
+}
+@media (max-width: 576px) {
+    header .mobile_menu .mobile_menu_content {
+        width: 100%;
+        left: -100%;
+        height: calc(100vh -79px);
+    }
+    .owl-carousel .owl-nav {
+        width: 80%;
+        top: calc(50% - 15px);
+        left: 7%;
+    }
+    section.resume .item:nth-child(even) {
+        float: none;
+        margin-top: 0;
+    }
+    section.resume .item:nth-child(odd) {
+        float: none;
+        margin-bottom: 80px;
+    }
+    section.resume .item {
+        margin-bottom: 80px;
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    section.resume .item::after {
+        right: 50% !important;
+        top: 0;
+    }
+    section.resume .item:nth-child(even)::after {
+        left: unset;
+        top: 100%;
+    }
+    section.resume .item:nth-child(even)::before {
+        left: calc(50% - 7px) !important;
+    }
+    section.resume .item:nth-child(odd)::after {
+        right: -40px;
+        top: 100%;
+    }
+    section.resume .item:nth-child(odd)::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        background-color: var(--main_color);
+        z-index: -1;
+    }
+    section.resume .item:nth-child(odd)::before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--main_color);
+        top: calc(130% - 7px) !important ;
+        right: calc(50% - 7px) !important;
+    }
+    section.resume .item:nth-child(even)::before {
+        top: calc(130% - 7px) !important;
+    }
+    section.certificates .item .post_image {
+        width: 100%;
+        max-height: 140px;
+        overflow: hidden;
+    }
+}

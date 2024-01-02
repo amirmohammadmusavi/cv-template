@@ -1,0 +1,100 @@
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 187, 0, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+}
+.blink {
+  animation: blink 1s linear;
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes reveal-reverse {
+  from {
+      clip-path: inset(0 100% 0 0);
+  }
+  to {
+      clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes show-up {
+  from {
+      scale: 0;
+  }
+  to {
+      scale: 1;
+  }
+}
+
+@keyframes text-show-up {
+  from {
+      clip-path: inset(0 100% 0 0);
+  }
+  to {
+      width: 250px;
+      clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes show-down {
+  0% {
+      opacity: 1;
+      z-index: +999;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+@keyframes line-timer {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes scaler {
+  0% {
+      transform: scale(1.07);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
