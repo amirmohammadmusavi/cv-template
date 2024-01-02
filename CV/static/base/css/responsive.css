@@ -168,11 +168,11 @@
         height: 15px;
         border-radius: 50%;
         background-color: var(--main_color);
-        top: calc(130% - 7px) !important ;
+        top: calc(100% + 32px) !important;
         right: calc(50% - 7px) !important;
     }
     section.resume .item:nth-child(even)::before {
-        top: calc(130% - 7px) !important;
+        top: calc(100% + 32px) !important;
     }
     section.certificates .item .post_image {
         width: 100%;
