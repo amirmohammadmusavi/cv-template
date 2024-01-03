@@ -179,4 +179,7 @@
         max-height: 140px;
         overflow: hidden;
     }
+    section.about .about_person .personal_social, footer .personal_social {
+        padding: 20px 24px;
+    }
 }
