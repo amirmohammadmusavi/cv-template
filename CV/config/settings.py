@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 
 
 TINYMCE_DEFAULT_CONFIG = {
-    #'theme': 'advanced',
+    #'theme': 'advanced'
     'height':'500',
     'relative_urls': False,
     'plugins': "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
