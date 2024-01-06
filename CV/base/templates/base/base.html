@@ -13,10 +13,10 @@
     <meta name="og:title" property="og:title" content="{{base_info.og_title}}">
     <meta property="og:description" content="{{base_info.og_description}}">
     <meta name="keywords" content="{% block keywords %}{% endblock %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{base_info.fav_icon}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{base_info.fav_icon2}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{base_info.fav_icon3}}">
-    <link rel="icon" href="{{base_info.fav_icon3}}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{base_info.fav_icon.url}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{base_info.fav_icon2.url}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{base_info.fav_icon3.url}}">
+    <link rel="icon" href="{{base_info.fav_icon3.url}}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'base/css/main.style.css' %}">
     <link rel="stylesheet" href="{% static 'base/css/balloon.css' %}">
