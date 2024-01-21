@@ -1,0 +1,13 @@
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+    {% if has_add_permission %}
+        {% url cl.opts|admin_urlname:'add' as add_url %}
+        <a href="{% add_preserved_filters add_url is_popup to_field %}" class="btn my-3">
+            {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 11H8M13 10H16M16 10H19M16 10V13M16 10V7M1 6H12M1 1H12" stroke="#7AFFC7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    {% endif %}
+{% endblock %}

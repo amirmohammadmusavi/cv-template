@@ -1,0 +1,237 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{base_info.site_title}}{% endblock %}
+{% block Link %}
+{% endblock %}
+{% block header %}{% include 'base/header.html' %}{% endblock %}
+{% block content %}
+<main class="Loupe_main">
+    {% if PersonalDesc or social or Status %}
+    <section class="about">
+        <div class="container">
+            <div class="about_person">
+                {% if PersonalDesc %}
+                {% if PersonalDesc.img %}
+                <div class="personal_img">
+                    <img src="{{PersonalDesc.img.url}}" alt="">
+                </div>
+                {% endif %}
+                <div class="personal_desc">
+                    <h1 class="name">{{PersonalDesc.name}}</h1>
+                    <h2 class="title">{{PersonalDesc.position}}</h2>
+                    <hr>
+                    <p class="desc">{{PersonalDesc.desc|safe}}</p>
+                </div>
+                {% endif %}
+                {% if social %}
+                <div class="personal_social" edge>
+                    {% for x in social %}
+                    {% if x.img %}
+                    <a href="{{x.href}}" target="_blank" aria-label="{{x.name}}" data-balloon-pos="up"><img src="{{x.img.url}}" alt="{{x.name}}"></a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if Status %}
+                <div class="conditions text-justify" edge>
+                    {% for x in Status %}
+                    <p>{{x.desc|safe}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if skills %}
+    <section class="skills bg-white pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="{{SkillsTitle.tid}}" class="title_">
+                        {{SkillsTitle.title}}
+                    </a>
+                </div>
+                {% for x in skills %}
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="item border rounded p-3 h-100">
+                        <h6 class="mb-2">{{x.title}}</h6>
+                        <p class="m-0">{{x.desc|safe}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if resume %}
+    <section class="resume py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                    <a id="{{ResumeTitle.tid}}" class="title_">
+                        {{ResumeTitle.title}}
+                    </a>
+            </div>
+            <div class="row justify-content-center">
+                <div class="cv_card">
+                    {% for x in resume %}
+                    <div class="item">
+                        <h6 class="mb-2">{{x.title}}</h6>
+                        <p class="m-0">{{x.desc|safe}}</p>
+                        <div class="foot d-flex mt-3 justify-content-between align-items-center">
+                            <div class="loc">
+                                <img src="{% static 'base/img/Place_Marker.png' %}">
+                                <span class="font-weight-bold">{{x.loc}}</span>
+                            </div>
+                            <span class="date font-weight-bold">
+                                {{x.year}}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if certificates %}
+    <section class="certificates py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="{{certificatesTitle.tid}}" class="title_">
+                        {{certificatesTitle.title}}
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-carousel owl-theme" dir="ltr">
+                    {% for x in certificates %}
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div class="item">
+                            <div class="post_image">
+                                <img src="{% if x.img %}{{x.img.url}}"{% else %}/static/base/img/not_found.jpg" not_found{% endif %} alt="photo for {{x.title}}">
+                            </div>
+                            <div class="info p-3 text-center">
+                                <h5>{{x.title}}</h5>
+                                <div class="date">
+                                    <img src="/static/base/img/calendar.png" alt="purple calendar icon">
+                                    <span>{{x.date}}</span>
+                                </div>
+                                <div class="loc">
+                                    <img src="/static/base/img/location.png" alt="purple location icon">
+                                    <span>{{x.loc}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if articles %}
+    <section class="articles certificates py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="{{articlesTitle.tid}}" class="title_">
+                        {{articlesTitle.title}}
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-carousel owl-theme" dir="ltr">
+                    {% for x in articles %}
+                    <div class="tab-pane active" id="tabs-{{forloop.counter}}" role="tabpanel">
+                        <div class="item" style="height:70px">
+                            <a href="{{x.href}}" class="info p-3 d-flex align-items-center justify-content-between">
+                                <h6>{{x.title}}</h6>
+                                <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.03225 4.02728C4.03251 3.89288 3.98564 3.76263 3.89978 3.65914L1.02012 0.207801C0.922364 0.0903305 0.781887 0.0164578 0.629595 0.00243403C0.477304 -0.0115897 0.325672 0.0353841 0.208057 0.133022C0.0904416 0.230659 0.0164782 0.370963 0.00243709 0.523067C-0.011604 0.675171 0.0354275 0.826616 0.133185 0.944086L2.71336 4.02728L0.225335 7.11048C0.177495 7.16932 0.141769 7.23702 0.120211 7.30969C0.0986526 7.38237 0.0916873 7.45858 0.0997154 7.53395C0.107743 7.60932 0.130606 7.68236 0.16699 7.74888C0.203374 7.81539 0.252561 7.87407 0.311725 7.92154C0.370943 7.97422 0.440416 8.01412 0.51579 8.03873C0.591164 8.06335 0.670816 8.07215 0.749755 8.06459C0.828695 8.05703 0.90522 8.03327 0.974537 7.9948C1.04385 7.95633 1.10447 7.90397 1.15259 7.84101L3.93434 4.38967C4.00663 4.28321 4.0411 4.15562 4.03225 4.02728Z" fill="black"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if works %}
+    <section class="works certificates bg-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="{{worksTitle.tid}}" class="title_">
+                        {{worksTitle.title}}
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-carousel owl-theme" dir="ltr">
+                    {% for x in works %}
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <a {% if x.href %}href="{{x.href}}"{% endif %} class="item border">
+                            <div class="post_image">
+                                <img src="{% if x.img %}{{x.img.url}}"{% else %}/static/base/img/not_found.jpg" not_found{% endif %} alt="photo for {{x.title}}">
+                            </div>
+                            <div class="info p-4 text-justify">
+                                <h5 class="mt-3">{{x.title}}</h5>
+                                <p class="mt-2">
+                                    {{x.desc|safe}}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</main>
+{% endblock %}
+{% block footer %}{% include 'base/footer.html' %}{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+        $(".owl-carousel").owlCarousel({
+            nav: true,
+            dots: true,
+            {% if not request.LANGUAGE_CODE == 'en' %}
+            rtl: true,
+            {% endif %}
+            mouseDrag: true,
+            autoplay: false,
+            loop: false,
+            margin: 20,
+            navText: ["", ""],
+            responsive: {
+                0: {
+                    items: 1,
+                    stagePadding: 70,
+                    margin: 70,
+                },
+                480: {
+                    items: 1,
+                    stagePadding: 70,
+                    margin: 70,
+                },
+                768: {
+                    items: 2,
+                    stagePadding: 70,
+                },
+                993: {
+                    items: 3,
+                    stagePadding: 70,
+                }
+            },
+        });
+
+    })();
+</script>
+{% endblock %}
