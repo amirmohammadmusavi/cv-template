@@ -137,6 +137,7 @@ header .mobile_menu .mobile_menu_content {
   overflow: scroll;
   z-index: 99;
   transition: all 0.5s ease;
+  text-align: right;
 }
 header .hamburger.active ~ .mobile_menu_content {
   left: 0;
@@ -286,6 +287,7 @@ skills
   font-weight: 900;
   position: relative;
   margin-bottom: 24px;
+  scroll-margin-top: 200px;
 }
 
 .title_::before {
@@ -315,7 +317,7 @@ section.resume .item {
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
   padding: 20px;
-  max-width: 254px;
+  width: 285px;
   position: relative;
 }
 section.resume .item:nth-child(even)::after,section.resume .item:nth-child(odd)::after{
@@ -356,7 +358,7 @@ section.resume .item:nth-child(odd)::before {
 
 section.resume .cv_card {
   position: relative;
-  width: 587px;
+  width: 649px;
 }
 section.resume .item:nth-child(even) {
   float: right;
@@ -400,6 +402,7 @@ section.certificates .item {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
+  height: 90%;
 }
 section.certificates .item .post_image {
   width: 100%;

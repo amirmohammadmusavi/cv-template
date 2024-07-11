@@ -187,7 +187,7 @@ section.about .about_person {
 }
 
 section.about .personal_img img{
-  width: 50vh;
+  width: 30vh;
 }
 
 section.about .about_person .personal_desc {
@@ -287,6 +287,7 @@ skills
   font-weight: 900;
   position: relative;
   margin-bottom: 24px;
+  scroll-margin-top: 200px;
 }
 
 .title_::before {
@@ -401,6 +402,7 @@ section.certificates .item {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
+  height: 90%;
 }
 section.certificates .item .post_image {
   width: 100%;

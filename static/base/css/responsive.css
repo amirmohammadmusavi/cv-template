@@ -112,6 +112,9 @@
     section.about .about_person .personal_desc p {
         font-size: 13px;
     }
+    section.resume .item {
+    width: 230.5px;
+}
 }
 @media (max-width: 576px) {
     header .mobile_menu .mobile_menu_content {
@@ -176,7 +179,7 @@
     }
     section.certificates .item .post_image {
         width: 100%;
-        max-height: 140px;
+        max-height: 350px;
         overflow: hidden;
     }
     section.about .about_person .personal_social, footer .personal_social {
