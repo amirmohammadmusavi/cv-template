@@ -32,17 +32,16 @@
     {% block Link %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLG47RXPL1"></script>
-    <script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLG47RXPL1"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-BLG47RXPL1');
-    </script>
-</head>
+</script>
 {% if base_info %}
 <body class="p-0">
     <!-- <div id="preloder">
