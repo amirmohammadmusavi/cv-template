@@ -6,11 +6,12 @@ from django.conf.urls.i18n import i18n_patterns
 from base.views import change_language
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
     path('change_language', change_language, name="change_language"),
     
 ]
 urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
 	path('', include('base.urls')),
 )
 
