@@ -2,7 +2,7 @@
 {% load i18n %}
 <header class="header">
     <div class="container">
-        <div class="row py-4 align-items-center" dir="ltr">
+        <div class="row py-4 align-items-center" {% if request.LANGUAGE_CODE == 'en' %}dir="ltr"{% else %}dir="rtl"{% endif %}>
             <div class="col-3 col-md-3 col-lg-3 d-xl-none">
                 <div class="icons">
                     <select onchange="location = this.value;" class="border-bottom border-dark bg-transparent mr-3" style="direction: rtl;border: none;" defualt_select>
@@ -13,71 +13,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-6 col-lg-6 col-xl-3">
-                <div class="logo text-center text-md-left">
-                    <a {% if base_info.site_url %}href="{{base_info.site_url}}" {% else %}href="/" {% endif %}>
-                        {% if base_info.logo %}
-                        <img style="height: 45px;" src="{{base_info.logo.url}}" alt="{{base_info.site_title}}">
-                        {% else %}
-                        <div class="not_found w-100 d-flex justify-content-center shadow-sm">
-                            <div class="w-100 p-2 d-flex align-items-center justify-content-between bg-white rounded ">
-                                <h6 style="font-size:12px" class="font-bold text-secondary">not found logo</h6>
-                                <i class="fa fa-search text-danger ml-3"></i>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-            <div class="col-3 col-md-3 col-lg-3 col-xl-9">
-                <div class="main-menu d-flex align-items-center w-100 justify-content-end">
-                    <div class="desctop_menu align-items-center d-flex w-100 justify-content-between">
-                        <div class="menu-items mr-3">
-                            <a href="#" class="item">{% translate "Home" %}</a>
-                            {% for x in menu %}
-                            <a href="{{x.href}}" class="item">{{x.title}}</a>
-                            {% endfor %}
-                        </div>
-                        <select onchange="location = this.value;" class="border-bottom border-dark bg-transparent mr-3" style="direction: rtl;border: none;" defualt_select>
-                            {% if base_info.en %}<option value="{% url 'change_language' %}?lang=en&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>en</option>{% endif %}
-                            {% if base_info.de %}<option value="{% url 'change_language' %}?lang=de&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'de' %}selected{% endif %}>de</option>{% endif %}
-                            {% if base_info.fa %}<option value="{% url 'change_language' %}?lang=fa&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'fa' %}selected{% endif %}>fa</option>{% endif %}
-                        </select>
-                    </div>
-                    <div class="mobile_menu">
-                        <div class="hamburger" onclick="show_menu()">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        <div class="mobile_menu_content">
-                            <div class="mobile_menu_items mr-3">
-                                <a href="#" class="item">{% translate "Home" %}</a>
-                                {% for x in menu %}
-                                <a href="{{x.href}}" class="item">{{x.title}}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% load static %}
-{% load i18n %}
-<header class="header">
-    <div class="container">
-        <div class="row py-4 align-items-center" dir="ltr">
-            <div class="col-3 col-md-3 col-lg-3 d-xl-none">
-                <div class="icons">
-                    <select onchange="location = this.value;" class="border-bottom border-dark bg-transparent mr-3" style="direction: rtl;border: none;" defualt_select>
-                        {% if base_info.en %}<option value="{% url 'change_language' %}?lang=en&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>en</option>{% endif %}
-                        {% if base_info.de %}<option value="{% url 'change_language' %}?lang=de&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'de' %}selected{% endif %}>de</option>{% endif %}
-                        {% if base_info.fa %}<option value="{% url 'change_language' %}?lang=fa&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'fa' %}selected{% endif %}>fa</option>{% endif %}
-                    </select>
-                </div>
-            </div>
-            <div class="col-6 col-md-6 col-lg-6 col-xl-3">
-                <div class="logo text-center text-md-left">
+                <div class="logo text-center {% if request.LANGUAGE_CODE == 'en' %}text-md-left{% endif %}">
                     <a {% if base_info.site_url %}href="{{base_info.site_url}}" {% else %}href="/" {% endif %}>
                         {% if base_info.logo %}
                         <img style="height: 45px;" src="{{base_info.logo.url}}" alt="{{base_info.site_title}}">

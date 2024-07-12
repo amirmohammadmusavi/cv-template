@@ -197,7 +197,7 @@ section.about .about_person .personal_desc {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
-    text-align: justify;
+    text-align: right;
     top: -14%;
     right: 6%;
 }
@@ -279,7 +279,9 @@ section.about .about_person .conditions::after {
 /* ---------------
 skills
 -----------------*/
-
+.skills {
+    direction: rtl;
+}
 .title_ {
   display: inline-block;
   color: var(--main_color);
@@ -298,6 +300,9 @@ skills
   height: 10px;
   border-radius: 3px;
   border: 2px solid var(--main_color);
+}
+.skills .item {
+    text-align: right;
 }
 
 /* --------------
@@ -319,6 +324,7 @@ section.resume .item {
   padding: 20px;
   width: 285px;
   position: relative;
+  text-align: right;
 }
 section.resume .item:nth-child(even)::after,section.resume .item:nth-child(odd)::after{
   content: '';
@@ -479,7 +485,7 @@ section .owl-carousel .owl-dot.active,section.articles .owl-carousel .owl-dot.ac
 .owl-carousel .owl-nav button:first-child {
   border-bottom: 1px solid #fff !important;
   border-left: 1px solid #fff !important;
-  transform: rotate(45deg);
+  transform: rotate(225deg);
   width: 10px;
   height: 10px;
   position: relative;
@@ -487,7 +493,7 @@ section .owl-carousel .owl-dot.active,section.articles .owl-carousel .owl-dot.ac
 .owl-carousel .owl-nav button:last-child {
   border-top: 1px solid #fff !important;
   border-right: 1px solid #fff !important;
-  transform: rotate(45deg);
+  transform: rotate(225deg);
   width: 10px;
   height: 10px;
   position: relative;
