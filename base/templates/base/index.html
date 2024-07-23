@@ -193,6 +193,53 @@
         </div>
     </section>
     {% endif %}
+    <section class="contact_us p-3 mt-4">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-12">
+                    <a id="Contact" class="title_">
+                        {% translate "Contact Me" %}
+                    </a>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <form action="{% url 'contact' %}" class="w-100 bg-white rounded" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-lg-12">
+                        <div class="row p-4 py-5">
+                            <div class="col-lg-6">
+                                <label for="" required="" style="font-size:14px;" class="mb-1 mt-2">{% translate "name and familly" %}</label>
+                                <input class="py-3 form-control" type="text" placeholder="{% translate 'example: amirmohammad mousavi' %}" name="Name" required="">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" required="" style="font-size:14px;" class="mb-1 mt-2">{% translate "Phone Number" %}</label>
+                                <input class="py-3 form-control" type="number" placeholder="{% translate 'example: 0901***1719' %}" name="Phone" required="">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="" required="" style="font-size:14px;" class="mb-1 mt-2">{% translate "Text" %}</label>
+                                <textarea class="form-control mb-3" cols="30" rows="5" name="Text" required></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="" style="font-size:14px;" class="mb-1 mt-2">{% translate "File (jpg, jpeg, pdf, png)" %}</label>
+                                <label for="File_U" class="File_card">
+                                    <h6>{% translate "Upload your file" %}</h6>
+                                    <div >
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" fill="var(--main_color)">
+                                            <path d="M224 128L224 0H48C21.49 0 0 21.49 0 48v416C0 490.5 21.49 512 48 512h288c26.51 0 48-21.49 48-48V160h-127.1C238.3 160 224 145.7 224 128zM96 224c17.67 0 32 14.33 32 32S113.7 288 96 288S64 273.7 64 256S78.33 224 96 224zM318.1 439.5C315.3 444.8 309.9 448 304 448h-224c-5.9 0-11.32-3.248-14.11-8.451c-2.783-5.201-2.479-11.52 .7949-16.42l53.33-80C122.1 338.7 127.1 336 133.3 336s10.35 2.674 13.31 7.125L160 363.2l45.35-68.03C208.3 290.7 213.3 288 218.7 288s10.35 2.674 13.31 7.125l85.33 128C320.6 428 320.9 434.3 318.1 439.5zM256 0v128h128L256 0z"/>
+                                        </svg>
+                                        <input type="file" class="form-control d-none" name="File" id="File_U" accept=".jpg, .jpeg, .pdf, .png">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <input style="background:var(--main_color);" class="text-white py-3 px-4 rounded mt-4" type="submit" value="{% translate 'Send' %}">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock %}
 {% block footer %}{% include 'base/footer.html' %}{% endblock %}

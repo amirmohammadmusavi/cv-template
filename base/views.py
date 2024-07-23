@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import SiteDetailsModel,menuModel
+from .models import SiteDetailsModel,menuModel,Contact
 from personalinfo.models import PersonalDesc, Social, Status
 from skills.models import Skills, SkillsTitle
 from resume.models import Resume,Resumetitle
@@ -11,7 +11,7 @@ from certificates.models import certificates, certificatestitle
 from articles.models import articles, articlestitle
 from works.models import works, WorksTitle
 import jdatetime
-
+from django.contrib import messages
 
 def HomeView(request):
     detail = SiteDetailsModel.objects.first()
@@ -44,3 +44,21 @@ def change_language(request):
 
 def get_now():
     return jdatetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
+
+def ContactView(request):
+
+    if request.method == "POST":
+        if not Contact.objects.filter(Phone=request.POST.get('Phone')).count() > 5:
+            try:
+                content = Contact(Name=request.POST.get('Name'),
+                                Text=request.POST.get('Text'),
+                                Phone=request.POST.get('Phone'),
+                                File=request.FILES['File'] if "File" in request.FILES else None,)
+                content.save()
+                messages.success(request, "Your message has been successfully sent")
+            except:
+                messages.error(request, "This operation was not successful")
+        else:
+            messages.error(request, "You have sent too many messages")
+
+    return HttpResponseRedirect('/'+request.LANGUAGE_CODE+"/#Contact")

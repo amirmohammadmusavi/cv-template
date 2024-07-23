@@ -18,9 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+
 #: .\base\templates\base\header.html:35 .\base\templates\base\header.html:54
 msgid "Home"
 msgstr "صفحه اصلی"
 
-msgid "Authentication and Authorization"
-msgstr "my text"
+#: .\base\templates\base\index.html:200 .\base\templates\base\index.html:200
+msgid "Contact Me"
+msgstr "تماس با من"
+
+#: .\base\templates\base\index.html:200 .\base\templates\base\index.html:208
+msgid "name and familly"
+msgstr "نام و نام خانوادگی"
+
+#: .\base\templates\base\index.html:209
+msgid "example: amirmohammad mousavi"
+msgstr "مثال: امیرمحمد موسوی"
+
+#: .\base\templates\base\index.html:212
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+#: .\base\templates\base\index.html:213
+msgid "example: 0901***1719"
+msgstr "مثال: 0901***1719"
+
+#: .\base\templates\base\index.html:216
+msgid "Text"
+msgstr "متن پیام"
+
+#: .\base\templates\base\index.html:220
+msgid "File (jpg, jpeg, pdf, png)"
+msgstr "فایل"
+
+#: .\base\templates\base\index.html:222
+msgid "Upload your file"
+msgstr "فایل خود را آپلود کنید"
+
+#: .\base\templates\base\index.html:232
+msgid "Send"
+msgstr "ارسال"

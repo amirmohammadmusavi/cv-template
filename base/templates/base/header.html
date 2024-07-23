@@ -36,6 +36,7 @@
                             {% for x in menu %}
                             <a href="{{x.href}}" class="item">{{x.title}}</a>
                             {% endfor %}
+                            <a href="#Contact" class="item">{% translate "Contact Me" %}</a>
                         </div>
                         <select onchange="location = this.value;" class="border-bottom border-dark bg-transparent mr-3" style="direction: rtl;border: none;" defualt_select>
                             {% if base_info.en %}<option value="{% url 'change_language' %}?lang=en&next={{request.path|slice:'3:' }}" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>en</option>{% endif %}
@@ -55,6 +56,7 @@
                                 {% for x in menu %}
                                 <a href="{{x.href}}" class="item">{{x.title}}</a>
                                 {% endfor %}
+                                <a href="#Contact" class="item">{% translate "Contact Me" %}</a>
                             </div>
                         </div>
                     </div>

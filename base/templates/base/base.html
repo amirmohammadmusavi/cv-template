@@ -135,6 +135,7 @@
 {% block content %}{% endblock %}
 
 {% block footer %}{% endblock %}
+<div class="alert_parent" id="Alert"></div>
 {% else %}
 <div class="container">
     <div class="row justify-content-center align-items-center w-100 h-100">
@@ -150,6 +151,11 @@
 <script src="{% static 'base/js/jquery.ajax.min.js' %}"></script>
 <script src="{% static 'base/js/main.js' %}"></script>
 <script src="{% static 'base/js/owl.carousel.min.js' %}"></script>
+<script>
+    {% if messages %}{% for message in messages %}
+    AM_alert({status : '{{message.tags}}', text:'{{ message }}',btns:false,obj:false});
+    {% endfor %}{% endif %}
+</script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

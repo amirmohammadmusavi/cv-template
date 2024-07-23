@@ -36,4 +36,17 @@ class menuModel(models.Model):
 
     class Meta:
         verbose_name_plural = 'منو'
+
+class Contact(models.Model):
+    class Meta:
+        verbose_name = 'تماس'
+        verbose_name_plural = 'تماس'
+    Name = models.CharField(max_length=300,verbose_name="نام و نام خانوادگی")
+    Phone = models.CharField(max_length=20,verbose_name="شماره تلفن همراه")
+    Text = models.CharField(max_length=2000,verbose_name="متن گزارش")
+    File = models.FileField(upload_to="UserReports/", verbose_name="فایل ضمیمه",null=True,blank=True)
+    Date = models.DateTimeField(auto_now_add=True,verbose_name="زمان ارسال",null=True)
+
+    def __str__(self):
+        return "از طرف {} به شماره تلفن {}".format(self.Name,self.Phone)
     

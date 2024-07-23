@@ -289,7 +289,8 @@ skills
   font-weight: 900;
   position: relative;
   margin-bottom: 24px;
-  scroll-margin-top: 200px;
+  scroll-margin-top: 130px;
+  direction: ltr;
 }
 
 .title_::before {
@@ -537,4 +538,52 @@ section.articles .owl-carousel .owl-nav button:first-child::after,section.works 
 }
 [not_found] {
   filter: grayscale(1);
+}
+
+/* contact us */
+.contact_us {
+  direction: rtl;
+  text-align: right;
+}
+.File_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px dashed #dfdfdf;
+  background: #fff;
+}
+
+.File_card i {
+  font-size: 24px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px dashed #0096ff;
+  padding: 12px;
+  color: #0096ff;
+}
+
+.File_card h6 {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.File_card input[type='file'] {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  max-width: 54px;
+  z-index: 1;
+}
+section.contact_us .title_::after {
+  content: '';
+  display: inline-block;
+  margin-left: 30px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 2px solid var(--main_color);
 }

@@ -219,6 +219,7 @@ input:lang(en)~.custom-file-label::after {
 [required]:not(input):after {
     content: "*";
     color: rgb(255, 59, 59);
+    margin: 0 6px;
 }
 
 [disabled],
@@ -349,7 +350,7 @@ table tr td {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 30px;
+    padding: 18px 0px;
     padding-left: 55px;
     border-radius: 15px;
     color: #fff;
@@ -372,9 +373,6 @@ table tr td {
 .Loupe_alert_ .alert-text-card .icon {
     max-height: 35px;
     min-width: 35px;
-    margin-left: 20px;
-    padding-left: 20px;
-    border-left: 1px solid rgba(118, 118, 118, 0.502);
 }
 .Loupe_alert_ .alert-text-card .icon svg {
     display: none;
@@ -404,8 +402,9 @@ table tr td {
     background-color: #FF0000;
 }
 .Loupe_alert_ .alert-text-card .alert-text {
-    font-size: 1.1em;
+    font-size: 14px;
     font-weight: 500;
+    margin: 0 16px;
 }
 
 .Loupe_alert_ .alert_close_btn {
@@ -521,7 +520,7 @@ table tr td {
     width: 50px;
     height: 50px;
     color: #c8c8c8;
-    border: 3px solid #eaeaea;
+    border: 2px solid #eaeaea;
     text-align: center;
     vertical-align: middle;
     line-height: 46px;
