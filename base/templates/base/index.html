@@ -232,7 +232,7 @@
                                 </label>
                             </div>
                             <div class="col-lg-12 text-center">
-                                <input style="background:var(--main_color);" class="text-white py-3 px-4 rounded mt-4" type="button" value="{% translate 'Send' %}" onclick="Progress();document.forms[0].submit()">
+                                <input style="background:var(--main_color);" class="text-white py-3 px-4 rounded mt-4" type="button" value="{% translate 'Send' %}" onclick="if(document.getElementsByName('Name')[0].value && document.getElementsByName('Phone')[0].value && document.getElementsByName('Text')[0].value){Progress();document.getElementsByName('Name')[0].style.borderColor='';document.forms[0].submit()}else{AM_alert({status : 'error', text:'Please enter the required information',btns:false,obj:false});;Progress(false)}">
                             </div>
                         </div>
                     </div>
