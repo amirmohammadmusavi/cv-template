@@ -8,7 +8,6 @@ html {
 }
 
 body {
-    font-family: IRANSans !important;
     font-size: var(--font-size) !important;
     transition: all 0.3s;
     height: 100hv;

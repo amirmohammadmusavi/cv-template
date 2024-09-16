@@ -1,6 +1,9 @@
 /*---------------------
   Header
 -----------------------*/
+body {
+  font-family: IRANSans !important;
+}
 header {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
   z-index: +999;
