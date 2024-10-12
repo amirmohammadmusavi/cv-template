@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'articles',
     'works',
     'tinymce',
+    'ai_chat',
 ]
 
 #TINYMCE_JS_URL = 'http://debug.example.org/tiny_mce/tiny_mce_src.js'

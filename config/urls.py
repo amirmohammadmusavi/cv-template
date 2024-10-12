@@ -13,6 +13,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
 	path('', include('base.urls')),
+    path('ai/', include('ai_chat.urls')),
 )
 
 if settings.DEBUG:
