@@ -2,7 +2,7 @@ import openai
 import os
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def create_embeddings(data):
