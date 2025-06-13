@@ -2,6 +2,9 @@ from django.db import models
 from tinymce.models import HTMLField
 import jdatetime
 
+def count_works():
+    return works.objects.all().count()
+
 class WorksTitle(models.Model):
     title = models.CharField(max_length=155,verbose_name='عنوان')
     tid = models.CharField(max_length=255,verbose_name='شناسه شخصی ( id )')

@@ -29,7 +29,7 @@ def HomeView(request):
         'SkillsTitle': SkillsTitle.objects.first(),
         'skills':Skills.objects.all(),
         'ResumeTitle': Resumetitle.objects.first(),
-        'resume': Resume.objects.all(),
+        'resume': Resume.objects.all().order_by("order"),
         'certificatesTitle': certificatestitle.objects.first(),
         'certificates': certificates.objects.all(),
         'articlesTitle': articlestitle.objects.first(),

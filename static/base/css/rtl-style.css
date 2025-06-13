@@ -188,10 +188,11 @@ section.about .about_person {
   display: flex;
   justify-content: center;
   position: relative;
+  height: 55%;
 }
 
 section.about .personal_img img{
-  width: 30vh;
+  width: 37vh;
 }
 
 section.about .about_person .personal_desc {
@@ -217,7 +218,7 @@ section.about .about_person .personal_desc h2 {
 
 section.about .about_person .personal_desc p {
   font-size: 15px;
-  font-weight: 100;
+  font-weight: 400;
 }
 
 section.about .about_person .personal_social,footer .personal_social {
